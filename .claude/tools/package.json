@@ -1,0 +1,8 @@
+{
+  "name": "learn-tools",
+  "private": true,
+  "description": "Rendering dependencies for the visualize makers (mermaid-cli uses the system Chromium).",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "^11.4.2"
+  }
+}

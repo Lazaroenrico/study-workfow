@@ -1,0 +1,80 @@
+{
+  "_comment": "Placement strands for /nivelamento. Each strand is an ordered sequence of curriculum lessons, easiest first, used for a binary search of the learner's edge. 'deps' are strands whose edge should be known before trusting this one. 'layer': base (math/ML/DL), mecanismo (how LLMs work), aplicacao (building with LLMs). Lesson ids are '<phase-dir>/<lesson-dir>' under curriculum/phases/.",
+  "strands": [
+    {
+      "id": "algebra-linear", "title": "Álgebra linear", "layer": "base", "deps": [],
+      "keywords": ["vetor", "matriz", "produto escalar", "dot product", "norma", "SVD", "PCA", "projeção"],
+      "lessons": ["01-math-foundations/01-linear-algebra-intuition", "01-math-foundations/02-vectors-matrices-operations", "01-math-foundations/03-matrix-transformations", "01-math-foundations/14-norms-and-distances", "01-math-foundations/12-tensor-operations", "01-math-foundations/10-dimensionality-reduction", "01-math-foundations/11-singular-value-decomposition"]
+    },
+    {
+      "id": "calculo-otimizacao", "title": "Cálculo e otimização", "layer": "base", "deps": ["algebra-linear"],
+      "keywords": ["derivada", "gradiente", "regra da cadeia", "autodiff", "gradient descent", "otimização", "convexo"],
+      "lessons": ["01-math-foundations/04-calculus-for-ml", "01-math-foundations/05-chain-rule-and-autodiff", "01-math-foundations/08-optimization", "01-math-foundations/13-numerical-stability", "01-math-foundations/18-convex-optimization"]
+    },
+    {
+      "id": "probabilidade", "title": "Probabilidade, estatística e informação", "layer": "base", "deps": [],
+      "keywords": ["probabilidade", "distribuição", "Bayes", "entropia", "cross-entropy", "KL", "amostragem", "estatística"],
+      "lessons": ["01-math-foundations/06-probability-and-distributions", "01-math-foundations/07-bayes-theorem", "01-math-foundations/15-statistics-for-ml", "01-math-foundations/09-information-theory", "01-math-foundations/16-sampling-methods"]
+    },
+    {
+      "id": "ml-classico", "title": "ML clássico e avaliação de modelos", "layer": "base", "deps": ["algebra-linear", "probabilidade"],
+      "keywords": ["regressão", "classificação", "overfitting", "bias-variance", "validação", "precision", "recall", "árvore", "ensemble"],
+      "lessons": ["02-ml-fundamentals/01-what-is-machine-learning", "02-ml-fundamentals/02-linear-regression", "02-ml-fundamentals/03-logistic-regression", "02-ml-fundamentals/09-model-evaluation", "02-ml-fundamentals/10-bias-variance", "02-ml-fundamentals/04-decision-trees", "02-ml-fundamentals/11-ensemble-methods", "02-ml-fundamentals/17-imbalanced-data", "02-ml-fundamentals/12-hyperparameter-tuning"]
+    },
+    {
+      "id": "redes-neurais", "title": "Redes neurais e treino", "layer": "base", "deps": ["calculo-otimizacao", "ml-classico"],
+      "keywords": ["perceptron", "backprop", "ativação", "loss", "otimizador", "Adam", "regularização", "dropout", "PyTorch"],
+      "lessons": ["03-deep-learning-core/01-the-perceptron", "03-deep-learning-core/02-multi-layer-networks", "03-deep-learning-core/03-backpropagation", "03-deep-learning-core/04-activation-functions", "03-deep-learning-core/05-loss-functions", "03-deep-learning-core/06-optimizers", "03-deep-learning-core/07-regularization", "03-deep-learning-core/08-weight-initialization", "03-deep-learning-core/09-learning-rate-schedules", "03-deep-learning-core/13-debugging-neural-networks"]
+    },
+    {
+      "id": "representacao-texto", "title": "Tokenização e embeddings", "layer": "mecanismo", "deps": ["algebra-linear"],
+      "keywords": ["token", "tokenizer", "BPE", "embedding", "word2vec", "similaridade", "cosseno", "vetor denso"],
+      "lessons": ["05-nlp-foundations-to-advanced/02-bag-of-words-tfidf", "05-nlp-foundations-to-advanced/03-word-embeddings-word2vec", "05-nlp-foundations-to-advanced/04-glove-fasttext-subword", "05-nlp-foundations-to-advanced/19-subword-tokenization", "10-llms-from-scratch/01-tokenizers", "11-llm-engineering/04-embeddings", "05-nlp-foundations-to-advanced/22-embedding-models-deep-dive"]
+    },
+    {
+      "id": "atencao-transformers", "title": "Atenção e transformers", "layer": "mecanismo", "deps": ["redes-neurais", "representacao-texto"],
+      "keywords": ["atenção", "attention", "self-attention", "query", "key", "value", "transformer", "positional", "KV cache", "GPT", "BERT"],
+      "lessons": ["05-nlp-foundations-to-advanced/09-sequence-to-sequence", "05-nlp-foundations-to-advanced/10-attention-mechanism", "07-transformers-deep-dive/01-why-transformers", "07-transformers-deep-dive/02-self-attention-from-scratch", "07-transformers-deep-dive/03-multi-head-attention", "07-transformers-deep-dive/04-positional-encoding", "07-transformers-deep-dive/05-full-transformer", "07-transformers-deep-dive/07-gpt-causal-language-modeling", "07-transformers-deep-dive/06-bert-masked-language-modeling", "07-transformers-deep-dive/12-kv-cache-flash-attention", "07-transformers-deep-dive/11-mixture-of-experts", "07-transformers-deep-dive/13-scaling-laws"]
+    },
+    {
+      "id": "treino-llms", "title": "Como LLMs são treinados e servidos", "layer": "mecanismo", "deps": ["atencao-transformers"],
+      "keywords": ["pré-treino", "pretraining", "SFT", "instruction tuning", "RLHF", "DPO", "LoRA", "fine-tuning", "quantização", "inferência"],
+      "lessons": ["10-llms-from-scratch/03-data-pipelines", "10-llms-from-scratch/04-pre-training-mini-gpt", "10-llms-from-scratch/06-instruction-tuning-sft", "10-llms-from-scratch/07-rlhf", "10-llms-from-scratch/08-dpo", "11-llm-engineering/08-fine-tuning-lora", "10-llms-from-scratch/11-quantization", "10-llms-from-scratch/12-inference-optimization", "10-llms-from-scratch/10-evaluation"]
+    },
+    {
+      "id": "prompting", "title": "Prompting, contexto e saída estruturada", "layer": "aplicacao", "deps": [],
+      "keywords": ["prompt", "few-shot", "chain of thought", "CoT", "structured output", "JSON schema", "contexto", "context window", "prompt caching"],
+      "lessons": ["11-llm-engineering/01-prompt-engineering", "11-llm-engineering/02-few-shot-cot", "11-llm-engineering/03-structured-outputs", "13-tools-and-protocols/04-structured-output", "11-llm-engineering/05-context-engineering", "05-nlp-foundations-to-advanced/20-structured-outputs-constrained-decoding", "11-llm-engineering/15-prompt-caching"]
+    },
+    {
+      "id": "rag", "title": "Retrieval e RAG", "layer": "aplicacao", "deps": ["representacao-texto", "prompting"],
+      "keywords": ["RAG", "retrieval", "chunking", "vector store", "busca semântica", "BM25", "híbrida", "rerank", "reranking", "cross-encoder"],
+      "lessons": ["05-nlp-foundations-to-advanced/14-information-retrieval-search", "11-llm-engineering/06-rag", "05-nlp-foundations-to-advanced/23-chunking-strategies-rag", "11-llm-engineering/07-advanced-rag", "05-nlp-foundations-to-advanced/28-long-context-evaluation"]
+    },
+    {
+      "id": "tools-mcp", "title": "Tool use e MCP", "layer": "aplicacao", "deps": ["prompting"],
+      "keywords": ["tool", "function calling", "ferramenta", "MCP", "Model Context Protocol", "schema", "server", "client"],
+      "lessons": ["13-tools-and-protocols/01-the-tool-interface", "13-tools-and-protocols/02-function-calling-deep-dive", "13-tools-and-protocols/05-tool-schema-design", "13-tools-and-protocols/03-parallel-and-streaming-tool-calls", "13-tools-and-protocols/06-mcp-fundamentals", "13-tools-and-protocols/07-building-an-mcp-server", "13-tools-and-protocols/08-building-an-mcp-client", "13-tools-and-protocols/09-mcp-transports", "13-tools-and-protocols/10-mcp-resources-and-prompts", "13-tools-and-protocols/15-mcp-security-tool-poisoning"]
+    },
+    {
+      "id": "agentes", "title": "Agentes", "layer": "aplicacao", "deps": ["tools-mcp"],
+      "keywords": ["agente", "agent", "agent loop", "ReAct", "planejamento", "memória", "orquestração", "multi-agent", "LangGraph", "workflow"],
+      "lessons": ["14-agent-engineering/01-the-agent-loop", "14-agent-engineering/06-tool-use-and-function-calling", "14-agent-engineering/12-anthropic-workflow-patterns", "14-agent-engineering/02-rewoo-plan-and-execute", "14-agent-engineering/03-reflexion-verbal-rl", "14-agent-engineering/07-memory-virtual-context-memgpt", "14-agent-engineering/13-langgraph-stateful-graphs", "14-agent-engineering/28-orchestration-patterns", "14-agent-engineering/26-failure-modes-agentic", "14-agent-engineering/30-eval-driven-agent-development"]
+    },
+    {
+      "id": "avaliacao", "title": "Avaliação de sistemas com LLM", "layer": "aplicacao", "deps": ["prompting"],
+      "keywords": ["eval", "avaliação", "benchmark", "LLM-as-judge", "golden set", "métrica", "A/B", "regressão"],
+      "lessons": ["02-ml-fundamentals/09-model-evaluation", "11-llm-engineering/10-evaluation", "05-nlp-foundations-to-advanced/27-llm-evaluation-frameworks", "14-agent-engineering/30-eval-driven-agent-development", "14-agent-engineering/19-benchmarks-swebench-gaia", "17-infrastructure-and-production/21-ab-testing-llm-features"]
+    },
+    {
+      "id": "producao", "title": "Produção: custo, latência, observabilidade, guardrails", "layer": "aplicacao", "deps": ["prompting"],
+      "keywords": ["produção", "deploy", "latência", "custo", "cache", "guardrail", "observabilidade", "gateway", "roteamento", "canary", "serving", "vLLM"],
+      "lessons": ["11-llm-engineering/11-caching-cost", "11-llm-engineering/12-guardrails", "11-llm-engineering/13-production-app", "17-infrastructure-and-production/01-managed-llm-platforms", "17-infrastructure-and-production/13-llm-observability", "17-infrastructure-and-production/14-prompt-semantic-caching", "17-infrastructure-and-production/16-model-routing", "17-infrastructure-and-production/19-ai-gateways", "17-infrastructure-and-production/20-shadow-canary-progressive", "17-infrastructure-and-production/08-inference-metrics-goodput", "17-infrastructure-and-production/04-vllm-serving-internals"]
+    },
+    {
+      "id": "seguranca", "title": "Segurança de aplicações com LLM", "layer": "aplicacao", "deps": ["agentes"],
+      "keywords": ["prompt injection", "jailbreak", "segurança", "red teaming", "tool poisoning", "guardrail"],
+      "lessons": ["18-ethics-safety-alignment/15-indirect-prompt-injection", "14-agent-engineering/27-prompt-injection-defense", "13-tools-and-protocols/15-mcp-security-tool-poisoning", "18-ethics-safety-alignment/12-red-teaming-pair-automated-attacks", "18-ethics-safety-alignment/02-reward-hacking-goodhart"]
+    }
+  ]
+}

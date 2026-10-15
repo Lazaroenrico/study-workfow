@@ -1,0 +1,46 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "~/Documents/AI Engineering"
+    ],
+    "allow": [
+      "Bash(python3 .claude/tools/quiz.py:*)",
+      "Bash(python3 .claude/tools/md_log.py:*)",
+      "Bash(python3 .claude/tools/import_transcript.py:*)",
+      "Bash(python3 .claude/tools/drawing.py:*)",
+      "Bash(python3 .claude/tools/placement.py:*)",
+      "Bash(python3 .claude/tools/status.py:*)",
+      "Bash(.claude/tools/render.sh:*)",
+      "WebSearch",
+      "WebFetch",
+      "Read(~/Documents/AI Engineering/**)",
+      "Edit(~/Documents/AI Engineering/**)",
+      "Write(~/Documents/AI Engineering/**)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/tools/md_log.py\" hook",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/tools/md_log.py\" hook",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}
